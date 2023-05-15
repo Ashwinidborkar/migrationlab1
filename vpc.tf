@@ -12,7 +12,10 @@ locals {
     GithubRepo = "terraform-aws-vpc"
     GithubOrg  = "terraform-aws-modules"
   }
+
+  public_hosted_ip ="192.0.2.235"
 }
+
 
 
 module "vpc" {
