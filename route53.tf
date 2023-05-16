@@ -15,7 +15,7 @@ resource "aws_route53_zone" "public_hosted_zone" {
 }
 
 
-resource "aws_route53_record" "resolve-test" {
+resource "aws_route53_record" "cert" {
   zone_id = aws_route53_zone.public_hosted_zone.id
   name    = "resolve-test"
   type    = "A"
@@ -24,3 +24,6 @@ resource "aws_route53_record" "resolve-test" {
 
   
 }
+
+
+
