@@ -6,7 +6,7 @@ resource "aws_s3_bucket" "mymigrationlab1"{
         Environment = "Lab"
     }
     lifecycle {
-        prevent_destroy = true
+        prevent_destroy = false
 
     }
 }
