@@ -1,4 +1,4 @@
-
+# Load balancer mglab-lb
 resource "aws_lb" "mglab-lb" {
     name = "mglab-lb"
     internal = false
@@ -7,6 +7,7 @@ resource "aws_lb" "mglab-lb" {
     security_groups = [aws_security_group.internet_face.id]
 }
 
+# sec group for ALB
 resource "aws_security_group" "internet_face" {
     name = "allow-tls"
     description = "allow tls inbound traffic"
@@ -39,6 +40,29 @@ resource "aws_security_group" "internet_face" {
   }
 }
 
+# Listener for port 80
+resource "aws_lb_listener" "alb_listener_80" {
+  load_balancer_arn = aws_lb.mglab-lb.arn
+  port              = "80"
+  protocol          = "HTTP"
+
+#   default_action {
+#     type             = "forward"
+#     target_group_arn = aws_lb_target_group.target_group_alb.arn
+#   }
+  default_action {
+    type = "redirect"
+
+    redirect {
+      port        = "443"
+      protocol    = "HTTPS"
+      status_code = "HTTP_301"
+    }
+  }
+}
+
+
+
 resource "aws_lb_listener" "front_end" {
     #depends_on = [ aws_acm_certificate.cert ]
     load_balancer_arn = aws_lb.mglab-lb.arn
@@ -47,14 +71,18 @@ resource "aws_lb_listener" "front_end" {
     ssl_policy = "ELBSecurityPolicy-TLS13-1-2-2021-06"
     #certificate_arn = “arn:aws:acm:eu-west-1:217741831553:certificate/f3ee1939-5812-497a-8ed1-18cc17caf098”
     certificate_arn = aws_acm_certificate.mglab-cert.arn
+  #   default_action {
+  #     type = "fixed-response"
+  #     fixed_response {
+  #       content_type = "text/plain"
+  #       message_body = "fixed response content"
+  #       status_code = "200"
+  #     }
+  # } 
     default_action {
-      type = "fixed-response"
-      fixed_response {
-        content_type = "text/plain"
-        message_body = "fixed response content"
-        status_code = "200"
-      }
-  } 
+      type             = "forward"
+      target_group_arn = aws_lb_target_group.alb-example.arn
+  }
 } 
 resource "aws_route53_record" "aliaslb" {
   zone_id = data.aws_route53_zone.ashwini-mg.zone_id

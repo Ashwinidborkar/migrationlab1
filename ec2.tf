@@ -1,33 +1,33 @@
+# #Instance Creation
+# resource "aws_instance" "pgadmin_instance" {
+#   ami           = data.aws_ami.ubuntu.id
+#   instance_type = "t2.micro"
+#   vpc_security_group_ids = [aws_security_group.pgadmin_sg.id]
 
-resource "aws_instance" "pgadmin_instance" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.pgadmin_sg.id]
-
-  key_name = "migration_key"
-  subnet_id = data.aws_subnet.public_1.id
-
-
-  tags = {
-    Name = "pgmin server1"
-  }
-}
-
-resource "aws_instance" "pgadmin_instance2" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t2.micro"
-  vpc_security_group_ids = [aws_security_group.pgadmin_sg.id]
-
-  key_name = "migration_key"
-  subnet_id = data.aws_subnet.public_2.id
+#   key_name = "migration_key"
+#   subnet_id = data.aws_subnet.public_1.id
 
 
-  tags = {
-    Name = "pgmin server2"
-  }
-}
+#   tags = {
+#     Name = "pgmin server1"
+#   }
+# }
+# # Instance 2 creation
+# resource "aws_instance" "pgadmin_instance2" {
+#   ami           = data.aws_ami.ubuntu.id
+#   instance_type = "t2.micro"
+#   vpc_security_group_ids = [aws_security_group.pgadmin_sg.id]
+
+#   key_name = "migration_key"
+#   subnet_id = data.aws_subnet.public_2.id
 
 
+#   tags = {
+#     Name = "pgmin server2"
+#   }
+# }
+
+# Security group
 resource "aws_security_group" "pgadmin_sg" {
 
   name        = "pgadmin_sg"
@@ -63,4 +63,4 @@ resource "aws_security_group" "pgadmin_sg" {
   tags = {
     Name = "pgadmin_server"
   }
-}
+ }
