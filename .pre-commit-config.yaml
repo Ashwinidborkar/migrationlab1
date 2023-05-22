@@ -1,9 +1,8 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
+-   repo: git@github.com:awslabs/git-secrets 
     rev: master
     hooks:
-      - id: git-secrets
-        name: Git Secrets
-
+      - id: git-secrets 
+        
 
     
