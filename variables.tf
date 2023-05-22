@@ -15,7 +15,6 @@ variable "vpc_name" {
 variable "vpc_cidr" {
   description = "cidr to use"
   type        = string
-  default     = ""
 }
 variable "vpc_id" {
   description = "vpc id to use"
