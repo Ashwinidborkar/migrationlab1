@@ -51,6 +51,6 @@ module "vpc" {
 #   tags = var.tags
 # }
 
-data "aws_availability_zones" "az" {
-  state = "available"
-}
+# data "aws_availability_zones" "az" {
+#   state = "available"
+# }
