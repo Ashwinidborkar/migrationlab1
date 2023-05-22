@@ -6,7 +6,7 @@ variable "region" {
 variable "number_of_azs" {
   description = "required number of avalibility zones"
   type        = number
-  default = "2"
+  
 }
 variable "vpc_name" {
   description = "name of the vpc"
