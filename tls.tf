@@ -8,7 +8,7 @@
 #   #validation_record_fqdns = [for record in aws_route53_record.cert:record.fqdn]
 #  }
 
- 
+
 ## TLS CERTIFICATE ##       
 resource "aws_acm_certificate" "mglab-cert" {
   domain_name       = "ash-mglab.aws.crlabs.cloud"

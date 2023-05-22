@@ -1,22 +1,22 @@
-resource "aws_s3_bucket" "mymigrationlab1"{
-    bucket = "migrationlab"
+resource "aws_s3_bucket" "mymigrationlab1" {
+  bucket = "migrationlab"
 
-    tags = {
-        Name = "migrationlab"
-        Environment = "Lab"
-    }
-    lifecycle {
-        prevent_destroy = false
+  tags = {
+    Name        = "migrationlab"
+    Environment = "Lab"
+  }
+  lifecycle {
+    prevent_destroy = false
 
-    }
+  }
 }
 
 resource "aws_s3_bucket_versioning" "version_my_bucket" {
-    bucket = aws_s3_bucket.mymigrationlab1.id
+  bucket = aws_s3_bucket.mymigrationlab1.id
 
-    versioning_configuration {
-      status = "Enabled"
-    }
+  versioning_configuration {
+    status = "Enabled"
+  }
 }
 
 resource "aws_dynamodb_table" "terraform_lock_tbl" {
@@ -30,7 +30,7 @@ resource "aws_dynamodb_table" "terraform_lock_tbl" {
     type = "S"
   }
 
-  tags           = {
+  tags = {
     Name = "terraform-lock"
   }
 }
