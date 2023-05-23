@@ -71,5 +71,5 @@ jobs:
           directory: .
           framework: terraform  
           soft_fail: false
-          download_external_modules: true
+          
         
