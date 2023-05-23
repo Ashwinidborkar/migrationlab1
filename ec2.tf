@@ -53,6 +53,7 @@ resource "aws_security_group" "pgadmin_sg" {
 
   }
   egress {
+    description = "Allow from everywhere" #Check: CKV_AWS_23: "Ensure every security groups rule has a description"
     from_port        = 0
     to_port          = 0
     protocol         = "-1"
