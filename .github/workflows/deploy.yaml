@@ -69,8 +69,11 @@ jobs:
         uses: bridgecrewio/checkov-action@master
         with:
           directory: .
-          soft_fail: true
+          soft_fail: false
           download_external_modules: true
-  
-  
-       
+      - name: Test with Checkov
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          framework: terraform   
