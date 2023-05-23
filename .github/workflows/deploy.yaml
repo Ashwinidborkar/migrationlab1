@@ -14,7 +14,7 @@ jobs:
       packages: write
       contents: read
       id-token: write
-  steps:
+    steps:
       - name: Clone our repository
         uses: actions/checkout@v3
       - name: AWS Authentications
@@ -31,8 +31,8 @@ jobs:
         run: terraform fmt -check
       - name: Terraform validation
         run: terraform validate
-      - name: Terraform Plan
-        run: terraform plan  
+      - name: Terraform planning
+        run: terraform plan
       - name: Terraform apply
         run: terraform apply -auto-approve
   tflint:
