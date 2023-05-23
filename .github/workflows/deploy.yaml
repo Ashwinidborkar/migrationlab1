@@ -35,6 +35,7 @@ jobs:
         run: terraform plan
       - name: Terraform apply
         run: terraform apply -auto-approve
+        #tflint file
   tflint:
     name: TFLint
     runs-on: ubuntu-latest
