@@ -13,7 +13,6 @@ jobs:
       pull-requests: write
 
     steps:
-      
       - name: Setup Infracost
         uses: infracost/actions/setup@v2
         with:
