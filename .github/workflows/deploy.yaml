@@ -71,5 +71,6 @@ jobs:
           directory: .
           framework: terraform  
           soft_fail: false
-          
+          quiet: true      #display only failed checks
+         
         
