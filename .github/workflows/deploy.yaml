@@ -67,9 +67,7 @@ jobs:
       - name: Run Checkov action
         id: checkov
         uses: bridgecrewio/checkov-action@master
-        if: success() || failure()
         with:
-          sarif_file: results.sarif
           directory: .
           framework: terraform  
           soft_fail: false
