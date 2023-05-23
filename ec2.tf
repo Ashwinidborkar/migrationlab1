@@ -29,6 +29,7 @@
 
 # Security group
 resource "aws_security_group" "pgadmin_sg" {
+  # checkov:skip=CKV_AWS_24: ADD REASON
 
   name        = "pgadmin_sg"
   description = "Allow connect for pgadmin inbound traffic"

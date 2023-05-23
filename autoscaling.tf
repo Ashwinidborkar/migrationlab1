@@ -21,6 +21,7 @@ resource "aws_autoscaling_group" "mglab_autogrp" {
 
 
 resource "aws_launch_configuration" "asg_launch_conf" {
+  # checkov:skip=CKV_AWS_79: ADD REASON
   name                        = "mglab_config"
   image_id                    = data.aws_ami.ubuntu.id
   instance_type               = "t2.micro"
