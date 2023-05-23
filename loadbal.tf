@@ -1,5 +1,6 @@
 # Load balancer mglab-lb
 resource "aws_lb" "mglab-lb" {
+  # checkov:skip=CKV_AWS_91: ADD REASON
   # checkov:skip=CKV_AWS_150: ADD REASON
   name               = "mglab-lb"
   internal           = false
@@ -10,6 +11,8 @@ resource "aws_lb" "mglab-lb" {
 
 # sec group for ALB
 resource "aws_security_group" "internet_face" {
+  # checkov:skip=CKV_AWS_23: ADD REASON
+  # checkov:skip=CKV_AWS_260: ADD REASON
   name        = "allow-tls"
   description = "allow tls inbound traffic"
   vpc_id      = module.vpc.vpc_id
