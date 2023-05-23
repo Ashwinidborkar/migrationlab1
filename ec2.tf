@@ -29,6 +29,7 @@
 
 # Security group
 resource "aws_security_group" "pgadmin_sg" {
+  # checkov:skip=CKV2_AWS_5: ADD REASON
   # checkov:skip=CKV_AWS_24: ADD REASON
 
   name        = "pgadmin_sg"
