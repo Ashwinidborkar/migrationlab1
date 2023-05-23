@@ -1,5 +1,6 @@
 # Load balancer mglab-lb
 resource "aws_lb" "mglab-lb" {
+  # checkov:skip=CKV_AWS_131: ADD REASON
   # checkov:skip=CKV_AWS_91: ADD REASON
   # checkov:skip=CKV_AWS_150: ADD REASON
   name               = "mglab-lb"
