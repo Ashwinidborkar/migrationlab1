@@ -70,7 +70,6 @@ jobs:
         if: success() || failure()
         with:
           sarif_file: results.sarif
-        with:
           directory: .
           framework: terraform  
           soft_fail: false
