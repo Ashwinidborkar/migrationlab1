@@ -1,0 +1,76 @@
+name: Automation of terraform deployments on pull to MAINS
+on:
+  push:
+    branches:
+      - main
+      - git-action
+  # pull_request:
+  #   branches:
+  #     - main
+jobs:
+  terraform-deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      contents: read
+      id-token: write
+    steps:
+      - name: Clone our repository
+        uses: actions/checkout@v3
+      - name: AWS Authentications
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::299091871285:role/github-actions-oidc
+          aws-region: eu-central-1
+          role-session-name: GithubEC2Deploy
+      - name: Terraform Set up
+        uses: hashicorp/setup-terraform@v1
+      - name: Terraform initialization
+        run: terraform init
+      - name: Terraform format checking
+        run: terraform fmt -check
+      - name: Terraform validation
+        run: terraform validate
+      - name: Terraform planning
+        run: terraform plan
+      - name: Terraform apply
+        run: terraform apply -auto-approve
+  tflint:
+    name: TFLint
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - uses: terraform-linters/setup-tflint@v3
+        name: Setup TFLint
+        with:
+          tflint_version: v0.44.1
+
+      - name: Show version
+        run: tflint --version
+
+      - name: Init TFLint
+        run: tflint --init
+        env:
+        # https://github.com/terraform-linters/tflint/blob/master/docs/user-guide/plugins.md#avoiding-rate-limiting
+          GITHUB_TOKEN: ${{ github.token }}
+
+      - name: Run TFLint
+        run: tflint -f compact  
+  checkov-job:
+    runs-on: ubuntu-latest
+    name: checkov-action
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@master
+
+      - name: Run Checkov action
+        id: checkov
+        uses: bridgecrewio/checkov-action@master
+        with:
+          directory: .
+          framework: terraform  
+          soft_fail: false
+          quiet: true      #display only failed checks
+          skip_check: CKV_AWS_315,CKV_AWS_79,CKV_AWS_8,CKV_AWS_24,CKV_AWS_274,CKV_AWS_119,CKV_AWS_28,CKV_AWS_7,CKV2_AWS_16,CKV2_AWS_61,CKV2_AWS_28,CKV_AWS_144,CKV_AWS_18,CKV2_AWS_62,CKV2_AWS_6
+        
