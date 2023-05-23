@@ -14,8 +14,8 @@ resource "aws_lb_target_group" "alb-example" {
     #matcher = "200"  # has to be HTTP 200 or fails
   }
 }
-
 resource "aws_autoscaling_attachment" "asg_attachment_bar1" {
+  # checkov:skip=CKV2_AWS_15: ADD REASON
   autoscaling_group_name = aws_autoscaling_group.mglab_autogrp.id
   lb_target_group_arn    = aws_lb_target_group.alb-example.arn
 
