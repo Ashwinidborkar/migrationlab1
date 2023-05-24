@@ -1,7 +1,7 @@
 name: Automation of terraform deployments on pull to MAINS
 on:
-  # push:
-  #   branches: [ "main", "master","aws-infracost", "git-action"]
+  push:
+    branches: [ "main", "master","aws-infracost", "git-action"]
   
   pull_request:
     branches: [ "main", "master" ]
