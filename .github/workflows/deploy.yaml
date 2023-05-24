@@ -13,6 +13,10 @@ on:
 jobs:
   terraform-deploy:
     runs-on: ubuntu-latest
+
+    defaults:
+        run:
+          working-directory: ${{ env.tf_actions_working_dir }}
     permissions:
       packages: write
       contents: read
