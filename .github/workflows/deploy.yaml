@@ -21,6 +21,7 @@ jobs:
       packages: write
       contents: read
       id-token: write
+      pull-requests: write
     steps:
       - name: Clone our repository
         uses: actions/checkout@v3
