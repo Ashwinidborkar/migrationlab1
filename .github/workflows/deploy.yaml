@@ -70,8 +70,6 @@ jobs:
           role-session-name: GithubEC2Deploy
       - name: Terraform Set up
         uses: hashicorp/setup-terraform@v1
-        with:
-          terraform_wrapper: true
       - name: Terraform initialization
         run: terraform init
       - name: Terraform format checking
