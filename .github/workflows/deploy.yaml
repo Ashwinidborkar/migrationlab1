@@ -75,11 +75,9 @@ jobs:
             </details>
             #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
             <details><summary>Show Plan</summary>
-
             \`\`\`\n
             ${process.env.PLAN}
             \`\`\`
-
             </details>
 
             *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`.\`, Workflow: \`${{ github.workflow }}\`*`;
