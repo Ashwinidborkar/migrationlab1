@@ -3,8 +3,8 @@ on:
   push:
     branches:
       - main
-      - git-action
-      - aws-infracost
+      # - git-action
+      # - aws-infracost
   pull_request:
     branches: [ "main", "master" ]
   # pull_request:
@@ -81,7 +81,7 @@ jobs:
 
             </details>
 
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`migrationlab1\`, Workflow: \`${{ github.workflow }}\`*`;
+            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`.\`, Workflow: \`${{ github.workflow }}\`*`;
 
             // 3. If we have a comment, update it, otherwise create a new one
             if (botComment) {
