@@ -33,6 +33,8 @@ jobs:
           role-session-name: GithubEC2Deploy
       - name: Terraform Set up
         uses: hashicorp/setup-terraform@v1
+        with:
+          terraform_wrapper: true
       - name: Terraform initialization
         run: terraform init
       - name: Terraform format checking
@@ -76,7 +78,7 @@ jobs:
             <details><summary>Show Plan</summary>
 
             \`\`\`\n
-            ${{process.env.PLAN}}
+            ${process.env.PLAN}
             \`\`\`
 
             </details>
@@ -99,8 +101,8 @@ jobs:
             body: output
             })
             }
-
-      - name: Terraform apply
+          
+        - name: Terraform apply
         run: terraform apply -auto-approve
         #tflint file
   tflint:
