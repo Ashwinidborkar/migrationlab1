@@ -16,10 +16,12 @@ jobs:
         run:
           working-directory: .
     permissions:
+      actions: read
       packages: write
       contents: read
       id-token: write
       pull-requests: write
+      security-events: write
     steps:
       - name: Clone our repository
         uses: actions/checkout@v3
