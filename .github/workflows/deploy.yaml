@@ -4,6 +4,7 @@ on:
     branches:
       - main
       - git-action
+      - aws-infracost
   # pull_request:
   #   branches:
   #     - main
