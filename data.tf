@@ -26,10 +26,23 @@ data "aws_subnet" "public_1" {
   }
 }
 
+data "aws_subnet" "on_prem_db_subnet" {
+  filter {
+    name   = "tag:Name"
+    values = ["DB Subnet Onprem One"]
+  }
+}
+
+data "aws_subnet" "on_prem_app_subnet" {
+  filter {
+    name   = "tag:Name"
+    values = ["Public Subnet Onprem One"]
+  }
+}
+
 data "aws_subnet" "public_2" {
   filter {
     name   = "tag:Name"
     values = ["Public Subnet Two"]
   }
 }
-
