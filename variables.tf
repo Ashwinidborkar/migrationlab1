@@ -44,6 +44,6 @@
 
 variable "ami_for_appserver" {
   description = "name of the onprem server"
-   type        = string
-   default     = ""
+  type        = string
+  default     = ""
 }
