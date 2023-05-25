@@ -77,7 +77,7 @@ jobs:
       - name: Terraform validation
         run: terraform validate -no-color 
       - name: Terraform planning
-        run: terraform plan -out tfplan
+        run: terraform plan -out -no-color tfplan
         id: plan
 
       - run: terraform show -no-color tfplan
