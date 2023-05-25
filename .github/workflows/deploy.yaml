@@ -75,7 +75,7 @@ jobs:
       - name: Terraform format checking
         run: terraform fmt -check
       - name: Terraform validation
-        run: terraform validate
+        run: terraform validate -no-color 
       - name: Terraform planning
         run: terraform plan -out tfplan
         id: plan
