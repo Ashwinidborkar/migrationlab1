@@ -39,10 +39,11 @@ resource "aws_security_group" "pgadmin_sg" {
 
   ingress {
     description     = "Allow port 80"
-    from_port       = 80
+    from_port       = 20
     to_port         = 80
     protocol        = "tcp"
     security_groups = [aws_security_group.internet_face.id]
+    cidr_blocks     = [local.vpc_cidr, local.vpc_cidr_onprem]
   }
 
 
@@ -51,7 +52,7 @@ resource "aws_security_group" "pgadmin_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    cidr_blocks = [local.vpc_cidr, local.vpc_cidr_onprem]
 
   }
   egress {

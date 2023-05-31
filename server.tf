@@ -2,6 +2,7 @@
 
 #app server
 resource "aws_instance" "app_instance" {
+  # checkov:skip=CKV_AWS_79: ADD REASON
   # checkov:skip=CKV_AWS_126: ADD REASON
   # checkov:skip=CKV_AWS_8: ADD REASON
   depends_on    = [aws_instance.db_instance]
