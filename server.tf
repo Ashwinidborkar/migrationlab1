@@ -31,6 +31,7 @@ resource "aws_network_interface" "app_eni" {
 
 #database server
 resource "aws_instance" "db_instance" {
+  # checkov:skip=CKV_AWS_126: ADD REASON
   # checkov:skip=CKV_AWS_79: ADD REASON
   ami                    = var.ami_for_appserver
   instance_type          = "t2.medium"

@@ -47,3 +47,37 @@ variable "ami_for_appserver" {
   type        = string
   default     = ""
 }
+
+variable "rds_username" {
+  description = "name of the user"
+  type        = string
+  default     = ""
+}
+
+variable "rds_name" {
+  description = "name of the user"
+  type        = string
+  default     = ""
+}
+
+variable "restore_to_point_in_time" {
+  description = "nested block: NestingList, min items: 0, max items: 1"
+  type = set(object(
+    {
+      restore_time                  = string
+      source_db_instance_identifier = string
+      source_dbi_resource_id        = string
+      use_latest_restorable_time    = bool
+    }
+  ))
+  default = []
+}
+
+variable "peer_owner_id" {
+  description = "Id of account"
+  type        = string
+  default     = ""
+
+  
+}
+

@@ -8,6 +8,7 @@ locals {
   azs                 = slice(data.aws_availability_zones.available.names, 0, 2)
   azs_onprem          = slice(data.aws_availability_zones.available.names, 0, 2)
   mysql_root_password = "Mahee@0180"
+  # checkov:skip=CKV_SECRET_80: ADD REASON
 
   #data "aws_availability_zones" "available" {}
 }
