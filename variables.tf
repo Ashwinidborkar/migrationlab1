@@ -77,7 +77,12 @@ variable "peer_owner_id" {
   description = "Id of account"
   type        = string
   default     = ""
-
-
 }
+variable "password-for-dms" {
+  description = "password of account"
+  type        = string
+  default     = ""
+}
+
+
 

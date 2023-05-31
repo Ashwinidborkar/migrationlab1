@@ -77,14 +77,14 @@ resource "aws_lb_listener" "front_end" {
   ssl_policy        = "ELBSecurityPolicy-TLS13-1-2-2021-06"
   #certificate_arn = “arn:aws:acm:eu-west-1:217741831553:certificate/f3ee1939-5812-497a-8ed1-18cc17caf098”
   certificate_arn = aws_acm_certificate.mglab-cert.arn
-    default_action {
-      type = "fixed-response"
-      fixed_response {
-        content_type = "text/plain"
-        message_body = "fixed response content"
-        status_code = "200"
-      }
-  } 
+  default_action {
+    type = "fixed-response"
+    fixed_response {
+      content_type = "text/plain"
+      message_body = "fixed response content"
+      status_code  = "200"
+    }
+  }
   # default_action {
   #   type             = "forward"
   #   target_group_arn = aws_lb_target_group.alb-example.arn

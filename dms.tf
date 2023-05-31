@@ -58,9 +58,9 @@ resource "aws_dms_replication_instance" "dms-repli-instance" {
   replication_subnet_group_id  = aws_dms_replication_subnet_group.dms-sg-group.id
   vpc_security_group_ids       = [aws_security_group.rds_sg.id]
 
-    tags= {
-        Name        = "Rds-replication-instance"
-    }
+  tags = {
+    Name = "Rds-replication-instance"
+  }
 
 
   depends_on = [
@@ -74,6 +74,6 @@ resource "aws_dms_replication_instance" "dms-repli-instance" {
 resource "aws_dms_replication_subnet_group" "dms-sg-group" {
   replication_subnet_group_description = "DMS replication subnet group"
   replication_subnet_group_id          = "dms-repli-instance"
-  subnet_ids                          = ["subnet-007f8bc5097b4501b","subnet-03a613f7d994c16cd"]
-  
+  subnet_ids                           = ["subnet-007f8bc5097b4501b", "subnet-03a613f7d994c16cd"]
+
 }
