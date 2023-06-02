@@ -12,7 +12,7 @@ resource "aws_security_group" "app_sg" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = [local.vpc_cidr, local.vpc_cidr_onprem]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -20,7 +20,7 @@ resource "aws_security_group" "app_sg" {
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = [local.vpc_cidr, local.vpc_cidr_onprem]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -28,7 +28,7 @@ resource "aws_security_group" "app_sg" {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
-    cidr_blocks = [local.vpc_cidr, local.vpc_cidr_onprem]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   egress {
@@ -56,8 +56,8 @@ resource "aws_security_group" "db_sg" {
     from_port       = 22
     to_port         = 22
     protocol        = "tcp"
-    security_groups = [aws_security_group.app_sg.id]
-    cidr_blocks     = [local.vpc_cidr, local.vpc_cidr_onprem]
+    security_groups = [aws_security_group.app_sg.id,aws_security_group.repli_sg.id]
+    #cidr_blocks     = ["0.0.0.0/0"]
   }
 
   ingress {
@@ -65,8 +65,8 @@ resource "aws_security_group" "db_sg" {
     from_port       = 3306
     to_port         = 3306
     protocol        = "tcp"
-    security_groups = [aws_security_group.app_sg.id]
-    cidr_blocks     = [local.vpc_cidr, local.vpc_cidr_onprem]
+    security_groups = [aws_security_group.app_sg.id,aws_security_group.repli_sg.id]
+    cidr_blocks     = ["10.0.8.202/32",local.vpc_cidr,local.vpc_cidr_onprem]
   }
 
   egress {

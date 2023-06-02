@@ -83,6 +83,28 @@ variable "password-for-dms" {
   type        = string
   default     = ""
 }
+variable "password-for-rds" {
+  description = "password of RDS inst"
+  type        = string
+  default     = ""
+
+}
+variable "kms-key-rds-arn" {
+  description = "password of RDS inst"
+  type        = string
+  default     = ""
+}
+variable "dms-key-arn" {
+  description = "password of dms inst"
+  type        = string
+  default     = ""
+}
+variable "db-name" {
+  description = "password of rds db name"
+  type        = string
+  default     = ""
+}
+
 
 
 

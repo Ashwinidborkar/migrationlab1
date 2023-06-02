@@ -1,30 +1,35 @@
 #RDS instance
 resource "aws_db_instance" "rds-migration-postgres" {
+  # checkov:skip=CKV_AWS_161: ADD REASON
   # checkov:skip=CKV_AWS_118: ADD REASON
   # checkov:skip=CKV_AWS_129: ADD REASON
-  instance_class              = "db.t3.medium"
-  identifier                  = var.rds_name
-  allocated_storage           = 20
-  storage_type                = "gp3"
-  engine                      = "postgres"
-  engine_version              = "15"
-  port                        = "5432"
-  backup_retention_period     = 7
-  backup_window               = "14:30-15:50"
+  instance_class    = "db.t3.medium"
+  db_name           = var.db-name
+  identifier        = var.rds_name
+  allocated_storage = 20
+  storage_type      = "gp3"
+  engine            = "postgres"
+  engine_version    = "14"
+  port                    = "5432"
+  backup_retention_period = 7
+  backup_window           = "14:30-15:50"
+  db_subnet_group_name    = module.vpc.database_subnet_group
+  username                = var.rds_username
+  publicly_accessible     = true
+  #deletion_protection         = false
+  skip_final_snapshot        = true
+  storage_encrypted          = true
+  availability_zone          = local.azs[0]
+  apply_immediately          = true
+  vpc_security_group_ids     = [aws_security_group.rds_sg.id]
+  snapshot_identifier        = null
+  maintenance_window         = "Sun:10:30-Sun:12:30"
+  auto_minor_version_upgrade = true
+  #password = var.password-for-rds
   manage_master_user_password = true
-  db_subnet_group_name        = module.vpc.database_subnet_group
-  username                    = var.rds_username
-  publicly_accessible         = false
-  deletion_protection         = true
-  skip_final_snapshot         = true
-  multi_az                    = false
-  storage_encrypted           = true
-  availability_zone           = local.azs[0]
-  apply_immediately           = true
-  vpc_security_group_ids      = [aws_security_group.rds_sg.id]
-  snapshot_identifier         = null
-  maintenance_window          = "Sun:10:30-Sun:12:30"
-  auto_minor_version_upgrade  = true
+  kms_key_id                  = var.kms-key-rds-arn
+  
+
   #iam_database_authentication_enabled = true
 
   dynamic "restore_to_point_in_time" {
@@ -39,7 +44,7 @@ resource "aws_db_instance" "rds-migration-postgres" {
 
 
   tags = {
-    name = "migration rds instance"
+    name = "rds-mg"
   }
 }
 
@@ -55,7 +60,7 @@ resource "aws_security_group" "rds_sg" {
     from_port       = 5432
     to_port         = 5432
     protocol        = "tcp"
-    security_groups = [aws_security_group.pgadmin_sg.id]
+    #security_groups = [aws_security_group.pgadmin_sg.id]
     cidr_blocks     = [local.vpc_cidr, local.vpc_cidr_onprem]
   }
 

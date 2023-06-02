@@ -39,3 +39,7 @@ resource "aws_acm_certificate_validation" "cert_validation" {
   certificate_arn         = aws_acm_certificate.mglab-cert.arn
   validation_record_fqdns = [for record in aws_route53_record.record_cert : record.fqdn]
 }
+
+
+#"CREATE USER 'phpmyadmin'@'10.0.8.202' IDENTIFIED BY 'Mahee@0180';"
+#GRANT CREATE, ALTER, DROP, INSERT, UPDATE, DELETE, SELECT, REFERENCES, RELOAD on *.* TO 'phpmyadmin'@'10.0.8.202' WITH GRANT OPTION; FLUSH PRIVILEGES;"
