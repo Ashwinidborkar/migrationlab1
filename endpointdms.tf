@@ -2,7 +2,7 @@
 #                 Terraform resource to Create DMS source endpoints                     #
 #---------------------------------------------------------------------------------------#
 data "aws_secretsmanager_secret" "secrets" {
-  arn ="arn:aws:secretsmanager:eu-central-1:299091871285:secret:rds!db-709a51af-f26e-4499-8d45-0cdbf8cca0ed-tNeeqp"
+  arn ="arn:aws:secretsmanager:eu-central-1:299091871285:secret:rds!db-902f47c7-5de9-4efa-87f5-fa394be9e0c9-6uDpYV"
 }
 data "aws_secretsmanager_secret_version" "current" {
   secret_id = data.aws_secretsmanager_secret.secrets.id
