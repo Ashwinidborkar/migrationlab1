@@ -56,7 +56,7 @@ resource "aws_dms_replication_instance" "dms-repli-instance" {
   replication_instance_class   = "dms.t3.micro"
   replication_instance_id      = "dms-repli-instance"
   replication_subnet_group_id  = aws_dms_replication_subnet_group.dms-sg-group.id
-  vpc_security_group_ids       = [aws_security_group.rds_sg.id,aws_security_group.repli_sg.id]
+  vpc_security_group_ids       = [aws_security_group.rds_sg.id, aws_security_group.repli_sg.id]
   kms_key_arn                  = var.dms-key-arn
 
   tags = {
@@ -87,21 +87,21 @@ resource "aws_security_group" "repli_sg" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description     = "open port 5432"
-    from_port       = 5432
-    to_port         = 5432
-    protocol        = "tcp"
+    description = "open port 5432"
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
     #security_groups = [aws_security_group.pgadmin_sg.id]
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   ingress {
-    description     = "open port 3306"
-    from_port       = 3306
-    to_port         = 3306
-    protocol        = "tcp"
+    description = "open port 3306"
+    from_port   = 3306
+    to_port     = 3306
+    protocol    = "tcp"
     #security_groups = [aws_security_group.pgadmin_sg.id]
-    cidr_blocks     = ["0.0.0.0/0"]
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
 

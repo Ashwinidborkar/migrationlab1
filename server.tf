@@ -12,7 +12,7 @@ resource "aws_instance" "app_instance" {
   user_data = templatefile("${path.module}/app_user_data.sh.tpl", {
     db_private_ip       = aws_instance.db_instance.private_ip,
     mysql_root_password = local.mysql_root_password
-    
+
   })
   network_interface {
     network_interface_id = aws_network_interface.app_eni.id
@@ -43,7 +43,7 @@ resource "aws_instance" "db_instance" {
   user_data = templatefile("${path.module}/db_user_data.sh.tpl", {
     app_private_ip      = aws_network_interface.app_eni.private_ip,
     mysql_root_password = local.mysql_root_password
-    rep_private_ip =local.rep_private_ip
+    rep_private_ip      = local.rep_private_ip
   })
   tags = {
     Name = "db-server"

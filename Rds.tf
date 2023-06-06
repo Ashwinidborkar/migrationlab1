@@ -3,13 +3,13 @@ resource "aws_db_instance" "rds-migration-postgres" {
   # checkov:skip=CKV_AWS_161: ADD REASON
   # checkov:skip=CKV_AWS_118: ADD REASON
   # checkov:skip=CKV_AWS_129: ADD REASON
-  instance_class    = "db.t3.medium"
-  db_name           = var.db-name
-  identifier        = var.rds_name
-  allocated_storage = 20
-  storage_type      = "gp3"
-  engine            = "postgres"
-  engine_version    = "14"
+  instance_class          = "db.t3.medium"
+  db_name                 = var.db-name
+  identifier              = var.rds_name
+  allocated_storage       = 20
+  storage_type            = "gp3"
+  engine                  = "postgres"
+  engine_version          = "14"
   port                    = "5432"
   backup_retention_period = 7
   backup_window           = "14:30-15:50"
@@ -28,7 +28,7 @@ resource "aws_db_instance" "rds-migration-postgres" {
   #password = var.password-for-rds
   manage_master_user_password = true
   kms_key_id                  = var.kms-key-rds-arn
-  
+
 
   #iam_database_authentication_enabled = true
 
@@ -56,12 +56,12 @@ resource "aws_security_group" "rds_sg" {
   vpc_id      = module.vpc.vpc_id
 
   ingress {
-    description     = "open port 5432"
-    from_port       = 5432
-    to_port         = 5432
-    protocol        = "tcp"
+    description = "open port 5432"
+    from_port   = 5432
+    to_port     = 5432
+    protocol    = "tcp"
     #security_groups = [aws_security_group.pgadmin_sg.id]
-    cidr_blocks     = [local.vpc_cidr, local.vpc_cidr_onprem]
+    cidr_blocks = [local.vpc_cidr, local.vpc_cidr_onprem]
   }
 
   egress {

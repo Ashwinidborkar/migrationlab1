@@ -9,6 +9,10 @@ resource "aws_lb" "mglab-lb" {
   load_balancer_type = "application"
   subnets            = module.vpc.public_subnets
   security_groups    = [aws_security_group.internet_face.id]
+  access_logs {
+    bucket  = aws_s3_bucket.vpcflowlogbucket.id
+    enabled = true
+  }
 }
 
 # sec group for ALB
